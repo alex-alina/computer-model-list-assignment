@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux'
 
 class App extends Component {
 
   state = {
-    compModels : {
+    compModels: {
       "Ivel Z3": {
         manufacturer: "Ivasim",
         year: 1969,
@@ -27,13 +27,20 @@ class App extends Component {
       }
     }
   }
-  
+
   updateSelection = (event) => {
     event.preventDefault();
     this.setState({
       selectedValue: event.target.value
     })
-    
+
+  }
+
+  addSelectedModel = (event) => {
+    this.props.dispatch({
+      type: "ADD_MODEL",
+      payload: this.state.compModels[this.state.selectedValue]
+    })
   }
 
   render() {
@@ -45,11 +52,18 @@ class App extends Component {
             <option key={computer} value={computer}>{computer} ({this.state.compModels[computer].year})</option>
           )}
         </select>
-        {console.log(this.state)}
+        <button onClick={this.addSelectedModel}>Add</button>
       </div>
 
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    computerModels: state.computerModels
+  }
+}
+
+
+export default connect(mapStateToProps)(App);
