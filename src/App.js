@@ -25,16 +25,25 @@ class App extends Component {
       origin: "USA"
     }
   }
+  
+  updateSelection = (event) => {
+    event.preventDefault();
+    this.setState({
+      selectedValue: event.target.value
+    })
+    
+  }
 
   render() {
     return (
       <div className="App">
-        <select>
+        <select value={this.state.selectedValue} onChange={this.updateSelection}>
           <option value="">-- pick a model --</option>
           {Object.keys(this.state).map(computer =>
             <option key={computer} value={computer}>{computer} ({this.state[computer].year})</option>
           )}
         </select>
+        {console.log(this.state)}
       </div>
 
     );
