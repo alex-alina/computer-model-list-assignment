@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import './App.css';
 import { connect } from 'react-redux';
 import ModelDetails from './ModelDetails';
 
 class App extends Component {
-
   state = {
     compModels: {
       "Ivel Z3": {
@@ -34,7 +34,6 @@ class App extends Component {
     this.setState({
       selectedValue: event.target.value
     })
-
   }
 
   addSelectedModel = (event) => {
@@ -44,23 +43,36 @@ class App extends Component {
         ...this.state.compModels[this.state.selectedValue],
         name: this.state.selectedValue
       }
-      
     })
   }
 
   render() {
     return (
       <div className="App">
+
         {this.props.selectedModels.map(
-          model => < ModelDetails key={model.name} modelSpecs={model} />
+          model => 
+            < ModelDetails 
+              key={model.name} 
+              name={model.name}
+              manufacturer={model.manufacturer}
+              year={model.year}
+              origin={model.origin} 
+            />
         )}
+
         <select value={this.state.selectedValue} onChange={this.updateSelection}>
           <option value="">-- pick a model --</option>
-          {Object.keys(this.state.compModels).map(computer =>
-            <option key={computer} value={computer}>{computer} ({this.state.compModels[computer].year})</option>
+          {Object.keys(this.state.compModels).map(
+            computer =>
+              <option key={computer} value={computer}>
+                {computer} ({this.state.compModels[computer].year})
+              </option>
           )}
         </select>
+
         <button onClick={this.addSelectedModel}>Add</button>
+        
       </div>
     );
   }

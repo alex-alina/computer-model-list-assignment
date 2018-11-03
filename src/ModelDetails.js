@@ -1,16 +1,26 @@
-import * as React from 'react'
+import * as React from 'react';
+import { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export default function ModelDetails(props) {
+export default class ModelDetails extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    manufacturer: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    origin: PropTypes.string.isRequired
+  }
 
-  return(
-    <div>
-      <ul>
-        <li>Name: {props.modelSpecs.name}</li>
-        <li>Manufacturer: {props.modelSpecs.manufacturer}</li>
-        <li>Year: {props.modelSpecs.year}</li>
-        <li>Origin: {props.modelSpecs.origin}</li>
-      </ul>
-    </div>
-  )
+  render() {
+    return(
+      <div>
+        <ul>
+          <li>Name: {this.props.name}</li>
+          <li>Manufacturer: {this.props.manufacturer}</li>
+          <li>Year: {this.props.year}</li>
+          <li>Origin: {this.props.origin}</li>
+        </ul>
+      </div>
+    )
+  }
 }
 
