@@ -1,7 +1,7 @@
 ## Computer Model List Project
 
 [Computer model list demo](https://nifty-wozniak-c7df11.netlify.com/).
-* Select a computer model and click the Add button.
+* Select a computer model and click the **Add** button.
 
 ## Description
 Basic React app that uses:
